@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ms"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jom Kenali Nama Haiwan</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--sky1:#bfe6ff;--sky2:#eaf8ff;--card:#fff;--ink:#27395a;--soft:#6c7f9e;--line:#dbe7f5;--tile:#f3f8ff;
+--a:#ff9f1c;--a2:#fff3de;--b:#2e9bf0;--b2:#e3f2ff;--c:#8e5be8;--c2:#f0e8ff;--ok:#27b46a;--bad:#ef4a56;--pen:#ef4a56}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sky1:#12304d;--sky2:#0f1b2b;--card:#1b2a3f;--ink:#eef4fc;--soft:#9db0c9;--line:#34496a;--tile:#243653;--a2:#3b2c14;--b2:#13324f;--c2:#2b2147}}
+:root[data-theme="dark"]{--sky1:#12304d;--sky2:#0f1b2b;--card:#1b2a3f;--ink:#eef4fc;--soft:#9db0c9;--line:#34496a;--tile:#243653;--a2:#3b2c14;--b2:#13324f;--c2:#2b2147}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;color:var(--ink);font-family:"Fredoka","Baloo 2","Trebuchet MS",sans-serif;background:linear-gradient(var(--sky1),var(--sky2) 340px) var(--sky2);min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:18px 14px 40px}
+.hero{text-align:center;padding:10px 0 18px}
+.hero .row{font-size:38px;letter-spacing:6px}
+.hero small{display:inline-block;font-size:15px;font-weight:600;color:#fff;background:var(--b);padding:3px 16px;border-radius:20px;margin-bottom:6px}
+.hero h1{margin:0;font-size:clamp(30px,8vw,44px);line-height:1.05;font-weight:700;color:var(--b);text-shadow:0 3px 0 var(--card)}
+.hero h1 span{color:var(--a)}
+.prog{height:14px;background:var(--card);border-radius:10px;border:2px solid var(--line);overflow:hidden;margin:12px 6px 4px}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--ok));border-radius:10px;transition:width .3s}
+.pl{text-align:center;font-size:13px;color:var(--soft);margin-bottom:14px}
+.sec{background:var(--card);border-radius:24px;margin-bottom:18px;overflow:hidden;border:3px solid var(--sc);box-shadow:0 6px 0 var(--sc)}
+.sec header{display:flex;align-items:center;gap:10px;background:var(--sb);padding:12px 14px}
+.sec header b{flex:none;width:36px;height:36px;border-radius:50%;background:var(--sc);color:#fff;display:grid;place-items:center;font-size:20px}
+.sec header h2{margin:0;font-size:16px;font-weight:500;line-height:1.25}
+.body{padding:6px 14px 14px}
+.q{display:flex;align-items:center;gap:14px;padding:12px 0;border-top:2px dashed var(--line)}
+.q:first-child{border-top:0}
+.pic{flex:none;width:76px;text-align:center}
+.pic span{display:grid;place-items:center;width:76px;height:76px;border-radius:22px;background:var(--tile);font-size:46px;border:2px solid var(--line)}
+.pic em{display:block;font-style:normal;font-size:13px;font-weight:600;color:var(--soft);margin-top:3px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;flex:1}
+button.o{font:inherit;font-weight:500;font-size:16px;padding:9px 16px;border-radius:22px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;box-shadow:0 3px 0 var(--line);transition:transform .08s}
+button.o:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+button.o.sel{border-color:var(--sc);background:var(--sb);box-shadow:0 3px 0 var(--sc)}
+button:focus-visible,select:focus-visible,input:focus-visible,canvas:focus-visible{outline:3px solid var(--a);outline-offset:2px}
+.ok{border-color:var(--ok)!important;background:color-mix(in srgb,var(--ok) 22%,var(--card))!important;box-shadow:0 3px 0 var(--ok)!important}
+.bad{border-color:var(--bad)!important;background:color-mix(in srgb,var(--bad) 20%,var(--card))!important;box-shadow:0 3px 0 var(--bad)!important}
+.mrow{padding:10px 0;border-top:2px dashed var(--line)}.mrow:first-child{border-top:0}.mrow label{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:14px;color:var(--soft)}
+.trace{position:relative;border:2px solid var(--line);border-radius:16px;background:var(--tile);overflow:hidden}
+.trace canvas{display:block;width:100%;touch-action:none;cursor:crosshair;background:var(--card)}
+.tick{position:absolute;right:8px;top:6px;font-size:20px}
+.clr{position:absolute;right:6px;bottom:4px;font:inherit;font-size:12px;border:0;background:var(--card);color:var(--soft);border-radius:10px;padding:1px 8px;cursor:pointer;border:1px solid var(--line)}
+.mrow select{font-size:30px;width:92px;height:58px;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+.fill{display:flex;align-items:center;gap:6px;font-size:30px;font-weight:600;flex-wrap:wrap}
+.fill input{width:1.4em;height:1.5em;font:inherit;text-align:center;border:2px solid var(--line);border-bottom:4px solid var(--c);border-radius:12px;background:var(--card);color:var(--ink);text-transform:lowercase;padding:0}
+.go{font:inherit;font-weight:600;font-size:20px;display:block;margin:8px auto;padding:13px 34px;border:0;border-radius:28px;background:var(--b);color:#fff;cursor:pointer;box-shadow:0 5px 0 #1b6fb3}
+.go:active{transform:translateY(3px);box-shadow:0 2px 0 #1b6fb3}
+.go.g{background:var(--ok);box-shadow:0 5px 0 #1b7f49}
+#res{text-align:center;margin:14px 0 8px;display:none}
+#res.show{display:block;animation:pop .4s}
+#res .st{font-size:48px;letter-spacing:4px}
+#res .sc{font-size:26px;font-weight:700}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){#res.show{animation:none}.prog i{transition:none}}
+@media (max-width:480px){.q{flex-direction:column;align-items:flex-start}}
+.steps{display:flex;justify-content:center;gap:10px;margin:8px 0 6px}
+.steps span{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--card);border:3px solid var(--line);color:var(--soft);font-weight:700}
+.steps span.on{background:var(--sc);border-color:var(--sc);color:#fff;transform:scale(1.12)}
+.steps span.done{background:var(--ok);border-color:var(--ok);color:#fff}
+.fin{background:var(--card);border-radius:24px;border:3px solid var(--b);box-shadow:0 6px 0 var(--b);padding:22px 16px;text-align:center}
+.fin ul{list-style:none;padding:0;margin:12px auto;max-width:300px;text-align:left;font-size:18px}
+.fin li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:2px dashed var(--line)}
+.fin .big{font-size:56px}
+[hidden]{display:none!important}
+</style></head><body>
+<div class="wrap">
+<div class="hero"><div class="row" aria-hidden="true">🦁🦌🐯🐘🦒</div><small>Haiwan dan Nama</small><h1>Jom Kenali <span>Nama Haiwan</span></h1></div>
+<div class="steps" id="steps"><span style="--sc:var(--a)">A</span><span style="--sc:var(--b)">B</span><span style="--sc:var(--c)">C</span></div>
+<div class="prog"><i id="bar"></i></div><div class="pl" id="pl"></div>
+
+<div class="sec" id="sec0" style="--sc:var(--a);--sb:var(--a2)"><header><b>A</b><h2>Tekankan nama haiwan yang betul berdasarkan gambar.</h2></header><div class="body" id="A"></div></div>
+<div class="sec" id="sec1" hidden style="--sc:var(--b);--sb:var(--b2)"><header><b>B</b><h2>Lengkapkan huruf yang hilang pada nama haiwan.</h2></header><div class="body" id="C"></div></div>
+<div class="sec" id="sec2" hidden style="--sc:var(--c);--sb:var(--c2)"><header><b>C</b><h2>Surih perkataan dengan jari, kemudian pilih gambar yang betul.</h2></header><div class="body" id="B"></div></div>
+
+<button class="go" id="check">Semak jawapan</button>
+<div id="res" aria-live="polite"><div class="st" id="st"></div><div class="sc" id="sc"></div></div>
+<button class="go g" id="next" hidden>Seterusnya</button>
+
+<div class="fin" id="fin" hidden><div class="big">🏆</div><h2 style="margin:4px 0">Tahniah!</h2><div class="sc" id="tot" style="font-size:26px;font-weight:700"></div><ul id="lst"></ul><button class="go g" id="again">Main lagi</button></div>
+</div>
+
+<script>
+var D=[
+{e:"🦁",n:"Singa",s:"Singa",o:["Singa","Rusa","Gajah"]},
+{e:"🦌",n:"Rusa",s:"Rusa",o:["Rusa","Harimau","Zirafah"]},
+{e:"🐯",n:"Harimau",s:"Harimau",o:["Harimau","Singa","Gajah"]},
+{e:"🐘",n:"Gajah",s:"Gajah",o:["Gajah","Zirafah","Rusa"]},
+{e:"🦒",n:"Zirafah",s:"Zirafah",o:["Zirafah","Harimau","Singa"]}];
+var CP=[
+{e:"🦁",t:["S","_","n","_","a"],a:["i","g"]},
+{e:"🦌",t:["R","_","s","_"],a:["u","a"]},
+{e:"🐯",t:["H","_","r","_","m","_","u"],a:["a","i","a"]},
+{e:"🐘",t:["G","_","j","_","h"],a:["a","a"]},
+{e:"🦒",t:["Z","_","r","_","f","_","h"],a:["i","a","a"]}];
+var st={},step=0,SC=[0,0,0],NAMES=["A","B","C"];
+function $(i){return document.getElementById(i)}
+function sh(a){return a.map(function(x){return[Math.random(),x]}).sort(function(p,q){return p[0]-q[0]}).map(function(x){return x[1]})}
+function pic(d){return '<div class="pic"><span>'+d.e+'</span></div>'}
+function prog(){
+ var n=0;
+ if(step==0)st.a.forEach(function(v){if(v)n++});
+ if(step==2)[].forEach.call($("B").querySelectorAll("select"),function(s){if(s.value)n++});
+ if(step==1)CP.forEach(function(c,i){var ins=$("C").querySelectorAll('input[data-i="'+i+'"]'),f=true;[].forEach.call(ins,function(x){if(!x.value.trim())f=false});if(f)n++});
+ $("bar").style.width=(n/5*100)+"%";$("pl").textContent="Bahagian "+NAMES[step]+": "+n+" / 5 dijawab";
+}
+function setupTrace(cv,tick,clr,txt){
+ var r=window.devicePixelRatio||1,W=cv.clientWidth||260;
+ var x=cv.getContext("2d"),fam="Fredoka,'Trebuchet MS',sans-serif";
+ var fs=Math.min(70,Math.floor(W/6));
+ x.font="400 "+fs+"px "+fam;
+ var mw=x.measureText(txt).width;if(mw>W-24)fs=Math.floor(fs*(W-24)/mw);
+ var H=Math.round(fs*1.5+30),base0=H-20;
+ cv.style.height=H+"px";cv.width=W*r;cv.height=H*r;x.scale(r,r);
+ var cs=getComputedStyle(document.documentElement),lc=cs.getPropertyValue("--soft").trim()||"#6c7f9e",ink=cs.getPropertyValue("--ink").trim()||"#27395a";
+ function draw(){
+  x.clearRect(0,0,W,H);
+  x.lineWidth=2;x.strokeStyle=lc;x.setLineDash([]);
+  x.beginPath();x.moveTo(0,base0-fs);x.lineTo(W,base0-fs);x.moveTo(0,base0);x.lineTo(W,base0);x.stroke();
+  x.setLineDash([6,5]);x.lineWidth=1.2;x.beginPath();x.moveTo(0,base0-fs/2);x.lineTo(W,base0-fs/2);x.stroke();
+  x.font="400 "+fs+"px "+fam;x.textBaseline="alphabetic";x.strokeStyle=ink;x.lineWidth=1.6;x.setLineDash([4,4]);
+  x.strokeText(txt,12,base0);x.setLineDash([]);
+ }
+ draw();
+ if(document.fonts&&document.fonts.load)document.fonts.load("400 "+fs+"px Fredoka").then(function(){if(!n)draw()});
+ var down=false,n=0;
+ function pos(e){var b=cv.getBoundingClientRect();return[e.clientX-b.left,e.clientY-b.top]}
+ cv.onpointerdown=function(e){down=true;cv.setPointerCapture(e.pointerId);var p=pos(e);x.setLineDash([]);x.strokeStyle="#ef4a56";x.lineWidth=5;x.lineCap="round";x.lineJoin="round";x.beginPath();x.moveTo(p[0],p[1])};
+ cv.onpointermove=function(e){if(!down)return;var p=pos(e);x.lineTo(p[0],p[1]);x.stroke();x.beginPath();x.moveTo(p[0],p[1]);if(++n>70)tick.textContent="⭐"};
+ cv.onpointerup=cv.onpointercancel=function(){down=false};
+ clr.onclick=function(){n=0;draw();tick.textContent=""};
+}
+function buildA(){
+ st.a=[];var A=$("A");A.innerHTML="";
+ D.forEach(function(d,i){
+  var q=document.createElement("div");q.className="q";
+  q.innerHTML=pic(d)+'<div class="opts"></div>';
+  sh(d.o).forEach(function(o){
+   var b=document.createElement("button");b.className="o";b.textContent=o;
+   b.onclick=function(){st.a[i]=o;[].forEach.call(q.querySelectorAll("button"),function(x){x.classList.remove("sel")});b.classList.add("sel");prog()};
+   q.querySelector(".opts").appendChild(b)});
+  A.appendChild(q)});
+}
+function buildB(){
+ var B=$("B");B.innerHTML="";var pics=D.map(function(d){return d.e});
+ sh([0,1,2,3,4]).forEach(function(wi){
+  var row=document.createElement("div");row.className="mrow";
+  var w=document.createElement("div");w.className="trace";
+  var cv=document.createElement("canvas");cv.setAttribute("aria-label","Surih perkataan "+D[wi].s);
+  var tick=document.createElement("span");tick.className="tick";
+  var clr=document.createElement("button");clr.className="clr";clr.textContent="padam";
+  w.appendChild(cv);w.appendChild(tick);w.appendChild(clr);
+  var lab=document.createElement("label");lab.appendChild(document.createTextNode("Gambar yang sepadan:"));
+  var sel=document.createElement("select");sel.setAttribute("aria-label","Gambar untuk "+D[wi].s);
+  var h='<option value="">?</option>';sh(pics).forEach(function(p){h+='<option>'+p+'</option>'});
+  sel.innerHTML=h;sel.dataset.ans=D[wi].e;sel.onchange=prog;lab.appendChild(sel);
+  row.appendChild(w);row.appendChild(lab);B.appendChild(row);
+  setupTrace(cv,tick,clr,D[wi].s)});
+}
+function buildC(){
+ var Cc=$("C");Cc.innerHTML="";
+ CP.forEach(function(c,i){
+  var q=document.createElement("div");q.className="q";
+  var h=pic(c)+'<div class="fill">';
+  c.t.forEach(function(ch){h+=ch=="_"?'<input maxlength="1" data-i="'+i+'" aria-label="huruf hilang">':'<span>'+ch+'</span>'});
+  q.innerHTML=h+'</div>';Cc.appendChild(q)});
+ [].forEach.call(Cc.querySelectorAll("input"),function(x){x.oninput=prog});
+}
+function show(n){
+ step=n;
+ [0,1,2].forEach(function(i){$("sec"+i).hidden=i!=n});
+ var sp=$("steps").children;
+ [].forEach.call(sp,function(e,i){e.className=i==n?"on":i<n?"done":""});
+ $("steps").style.setProperty("--sc","var(--b)");
+ $("fin").hidden=true;$("check").hidden=false;$("next").hidden=true;$("res").className="";
+ $("bar").parentNode.hidden=false;$("pl").hidden=false;
+ if(n==0)buildA();if(n==1)buildC();if(n==2)buildB();
+ prog();window.scrollTo({top:0});
+}
+$("check").onclick=function(){
+ var s=0;
+ if(step==0)[].forEach.call($("A").querySelectorAll(".q"),function(q,i){
+  [].forEach.call(q.querySelectorAll("button"),function(b){b.classList.remove("ok","bad");
+   if(b.textContent==D[i].s)b.classList.add("ok");
+   else if(b.classList.contains("sel"))b.classList.add("bad")});
+  if(st.a[i]==D[i].s)s++});
+ if(step==2)[].forEach.call($("B").querySelectorAll("select"),function(se){
+  se.classList.remove("ok","bad");
+  if(se.value==se.dataset.ans){s++;se.classList.add("ok")}else se.classList.add("bad")});
+ if(step==1)CP.forEach(function(c,i){
+  var ins=$("C").querySelectorAll('input[data-i="'+i+'"]'),good=true;
+  [].forEach.call(ins,function(inp,k){if(inp.value.trim().toLowerCase()!=c.a[k])good=false});
+  [].forEach.call(ins,function(inp){inp.classList.remove("ok","bad");inp.classList.add(good?"ok":"bad")});
+  if(good)s++});
+ SC[step]=s;
+ $("st").textContent="⭐".repeat(s)+"☆".repeat(5-s);
+ $("sc").textContent=(s==5?"Hebat! ":s>=3?"Bagus! ":"Cuba lagi! ")+"Skor Bahagian "+NAMES[step]+": "+s+" / 5";
+ $("res").className="show";$("check").hidden=true;
+ $("next").hidden=false;$("next").textContent=step<2?"Seterusnya ke Bahagian "+NAMES[step+1]:"Lihat keputusan";
+ $("res").scrollIntoView({behavior:"smooth",block:"center"});
+};
+$("next").onclick=function(){
+ if(step<2){show(step+1);return}
+ [0,1,2].forEach(function(i){$("sec"+i).hidden=true});
+ $("check").hidden=true;$("next").hidden=true;$("res").className="";$("bar").parentNode.hidden=true;$("pl").hidden=true;
+ [].forEach.call($("steps").children,function(e){e.className="done"});
+ var t=SC[0]+SC[1]+SC[2];
+ $("tot").textContent="Jumlah markah: "+t+" / 15";
+ $("lst").innerHTML=NAMES.map(function(n,i){return "<li><span>Bahagian "+n+"</span><b>"+SC[i]+" / 5</b></li>"}).join("");
+ $("fin").hidden=false;window.scrollTo({top:0});
+};
+$("again").onclick=function(){SC=[0,0,0];show(0)};
+show(0);
+</script></body></html>
